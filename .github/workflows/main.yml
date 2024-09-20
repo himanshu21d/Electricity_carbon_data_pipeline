@@ -26,5 +26,5 @@ jobs:
       - name: Run script
         env:
           api_token: ${{ secrets.ELEC_API_KEY}}
-        run: rest_api_pipeline.py
+        run: python rest_api_pipeline.py
     
