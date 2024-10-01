@@ -3,28 +3,28 @@ name:
 
 on:
   schedule:
-    - cron:  '* 1 * * *'
+    - cron:  '* * 7 * *'
 
 jobs:
-  scheduled:
-    runs-on: ubuntu_latest
+  run-script:
+    runs-on: ubuntu-latest
 
     steps:
-    - name: Check out this repo
-      uses: actions/checkout@v2
+      - name: Check out this repo
+        uses: actions/checkout@v2
 
-    - name: Set up python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.9'
+      - name: Set up python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
 
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
-    - name: Run script
-      env:
-        api_token: ${{ secrets.ELEC_API_KEY}}
-      run: rest_api_pipeline.py
+      - name: Run script
+        env:
+          api_token: ${{ secrets.ELEC_API_KEY}}
+        run: python rest_api_pipeline.py
     
