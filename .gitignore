@@ -12,3 +12,4 @@ secrets.toml
 
 .vscode
 .dlt
+streamlit_env
