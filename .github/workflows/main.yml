@@ -1,9 +1,8 @@
-name:
-  Electricity Carbon Data
+name: Electricity Carbon Data
 
 on:
   schedule:
-    - cron:  '* * 7 * *'
+    - cron: '*/5 * * * *'  # Runs every 5 minutes
 
 jobs:
   run-script:
@@ -13,7 +12,7 @@ jobs:
       - name: Check out this repo
         uses: actions/checkout@v2
 
-      - name: Set up python
+      - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.9'
@@ -25,6 +24,7 @@ jobs:
 
       - name: Run script
         env:
-          api_token: ${{ secrets.ELEC_API_KEY}}
-        run: python rest_api_pipeline.py
-    
+          api_token: ${{ secrets.ELEC_API_KEY }}
+        run: |
+          set -e  # Stop on the first error
+          python rest_api_pipeline.py
