@@ -1,7 +1,3 @@
-Here’s a **README.md** file for your GitHub repository. This will provide potential users with detailed information about the project, how to set it up, and its key features:
-
----
-
 # ⚡️ Electricity Carbon Intensity and Power Breakdown Dashboard
 
 ### Overview
