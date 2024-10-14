@@ -2,12 +2,17 @@ from typing import Any
 import dlt
 import pandas as pd
 import duckdb
+import os
 from rest_api import RESTAPIConfig, rest_api_resources
 
 ZONES = ["DE", "FR", "DK-DK1"]  # Germany, France, New York, Denmark
 
 @dlt.source
-def electricity_source(api_token=dlt.secrets.value):
+def electricity_source(api_token=None):
+    api_token = api_token or os.getenv('API_TOKEN')
+    
+    if not api_token:
+        raise ValueError("API Token is missing!")
     resources = []
     
     for zone in ZONES:
