@@ -2,11 +2,12 @@ name: Electricity Carbon Data
 
 on:
   schedule:
-    - cron: '*/5 * * * *'  # Runs every 5 minutes
+    - cron: '*/5 * * * *'
 
 jobs:
   run-script:
     runs-on: ubuntu-latest
+    environment: ELEC_API_KEY  # Refer to the environment secret
 
     steps:
       - name: Check out this repo
@@ -24,7 +25,7 @@ jobs:
 
       - name: Run script
         env:
-          api_token: ${{ secrets.ELEC_API_KEY }}
+          api_token: ${{ secrets.ELEC_API_KEY }}  # Use the environment-specific secret
         run: |
-          set -e  # Stop on the first error
+          set -e
           python rest_api_pipeline.py
